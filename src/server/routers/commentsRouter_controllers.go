@@ -80,7 +80,7 @@ func init() {
 		beego.ControllerComments{
 			Method: "Login",
 			Router: `/login`,
-			AllowHTTPMethods: []string{"get"},
+			AllowHTTPMethods: []string{"get","post"},
 			Params: nil})
 
 	beego.GlobalControllerRouter["server/controllers:UserController"] = append(beego.GlobalControllerRouter["server/controllers:UserController"],

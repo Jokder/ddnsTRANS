@@ -4,7 +4,8 @@ import (
 	"server/models"
 	"encoding/json"
 	"github.com/astaxie/beego"
-	"os/user"
+	_ "os/user"
+	"io/ioutil"
 )
 
 // Operations about Users
@@ -43,19 +44,23 @@ func (u *UserController) GetAll() {
 // @Failure 403 :uid is empty
 // @router /:uid [get]
 func (u *UserController) Get() {
-	uid := u.GetString(":uid")
-	if uid != "" {
-		//user, err := new(models.User), _ //models.GetUser(uid)
-		user := new(models.User) //models.GetUser(uid)
-		user.Id="1"
-		user.Username="zhangsan"
-		u.Data["json"] = user
-		//if err != nil {
-		//	u.Data["json"] = err.Error()
-		//} else {
-		//	u.Data["json"] = user
-		//}
-	}
+	//uid := u.GetString(":uid")
+	//if uid != "" {
+	//user, err := new(models.User), _ //models.GetUser(uid)
+	user := new(models.User) //models.GetUser(uid)
+	user.Id = "1"
+	user.Username = "zhangsan"
+	prof:=new (models.Profile)
+	prof.Address="usa canifornia"
+	prof.Email="profile@gmail.com"
+	user.Profile=*prof
+	u.Data["json"] = user
+	//if err != nil {
+	//	u.Data["json"] = err.Error()
+	//} else {
+	//	u.Data["json"] = user
+	//}
+	//}
 	u.ServeJSON()
 }
 
